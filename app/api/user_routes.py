@@ -1,9 +1,8 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.models import User
+from app.models import User, Store, Product, ProductImage
 
 user_routes = Blueprint('users', __name__)
-
 
 @user_routes.route('/')
 @login_required

@@ -7,6 +7,9 @@ from flask_login import LoginManager
 from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
+from .api.product import product_routes
+from .api.store import store_routes
+from .api.productImage import product_image_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -15,7 +18,6 @@ app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 # Setup login manager
 login = LoginManager(app)
 login.login_view = 'auth.unauthorized'
-
 
 @login.user_loader
 def load_user(id):
@@ -28,6 +30,10 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
+app.register_blueprint(product_routes, url_prefix='/api/products')
+app.register_blueprint(store_routes, url_prefix='/api/stores')
+app.register_blueprint(product_image_routes, url_prefix='/api/product-images')
+
 db.init_app(app)
 Migrate(app, db)
 
