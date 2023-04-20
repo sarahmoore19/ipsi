@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, User, Store, Product, ProductImage
-from ..forms import StoreForm
+from ..forms import StoreForm, UpdateStoreForm
 from app.api.aws_helpers import upload_file_to_s3, get_unique_filename
 
 store_routes = Blueprint('stores', __name__)
@@ -37,14 +37,13 @@ def post_store():
   form = StoreForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
-    url = None
-    if (form.data['main_image']):
-      image = form.data["mainImage"]
-      image.filename = get_unique_filename(image.filename)
-      upload = upload_file_to_s3(image)
-      if "url" not in upload:
-          return {'errors': upload}, 401
-      url = upload["url"]
+
+    image = form.data["mainImage"]
+    image.filename = get_unique_filename(image.filename)
+    upload = upload_file_to_s3(image)
+    if "url" not in upload:
+        return {'errors': upload}, 401
+    url = upload["url"]
 
     store = Store(
       name = form.data['name'],
@@ -52,6 +51,7 @@ def post_store():
       main_image = url,
       user_id = current_user.id
     )
+
     db.session.add(store)
     db.session.commit()
     return store.to_dict()
@@ -61,10 +61,11 @@ def post_store():
 @login_required
 def update_store(storeId):
   store = Store.query.get(storeId)
-  form = StoreForm()
+  form = UpdateStoreForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
-    if (form.data['main_image']):
+
+    if form.data['mainImage']:
       image = form.data["mainImage"]
       image.filename = get_unique_filename(image.filename)
       upload = upload_file_to_s3(image)
@@ -72,9 +73,10 @@ def update_store(storeId):
           return {'errors': upload}, 401
       url = upload["url"]
       store.main_image = url
-    store.name = form.data['name']
-    store.description = form.data['description']
-    store.user_id = current_user.id
+
+    if form.data['name']: store.name = form.data['name']
+    if form.data['description']: store.description = form.data['description']
+
     db.session.commit()
     return store.to_dict()
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401

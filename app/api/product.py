@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, User, Store, Product, ProductImage
-from ..forms import ProductForm
+from ..forms import ProductForm, UpdateProductForm
 from app.api.aws_helpers import upload_file_to_s3, get_unique_filename
 
 product_routes = Blueprint('products', __name__)
@@ -42,14 +42,13 @@ def post_store():
   form = ProductForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
-    url = None
-    if (form.data['main_image']):
-      image = form.data["mainImage"]
-      image.filename = get_unique_filename(image.filename)
-      upload = upload_file_to_s3(image)
-      if "url" not in upload:
-          return {'errors': upload}, 401
-      url = upload["url"]
+
+    image = form.data["mainImage"]
+    image.filename = get_unique_filename(image.filename)
+    upload = upload_file_to_s3(image)
+    if "url" not in upload:
+        return {'errors': upload}, 401
+    url = upload["url"]
 
     product = Product(
       name = form.data['name'],
@@ -57,8 +56,9 @@ def post_store():
       price = form.data['price'],
       main_image = url,
       user_id = current_user.id,
-      store_id = request.data['storeId']
+      store_id = form.data['storeId']
     )
+
     db.session.add(product)
     db.session.commit()
     return product.to_dict()
@@ -68,10 +68,11 @@ def post_store():
 @login_required
 def update_store(productId):
   product = Product.query.get(productId)
-  form = ProductForm()
+  form = UpdateProductForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
-    if (form.data['main_image']):
+
+    if form.data['mainImage']:
       image = form.data["mainImage"]
       image.filename = get_unique_filename(image.filename)
       upload = upload_file_to_s3(image)
@@ -79,9 +80,11 @@ def update_store(productId):
           return {'errors': upload}, 401
       url = upload["url"]
       product.main_image = url
-    product.name = form.data['name']
-    product.description = form.data['description']
-    product.price = form.data['price'],
+
+    if form.data['name']: product.name = form.data['name']
+    if form.data['description']: product.description = form.data['description']
+    if form.data['price']: product.price = form.data['price']
+
     db.session.commit()
     return product.to_dict()
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401
