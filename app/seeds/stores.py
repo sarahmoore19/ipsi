@@ -5,22 +5,22 @@ from sqlalchemy.sql import text
 def seed_stores():
     demo1 = Store(
         name='Store 1',
-        main_image='https://ipsi-clone.s3.us-east-2.amazonaws.com/garden1.jpg',
+        main_image="https://ipsi-clone.s3.amazonaws.com/f83453979e71495697e48c95dd79ac63.jpg",
         description='random description here random description here',
         user_id=1)
     demo2 = Store(
         name='Store 2',
-        main_image='https://ipsi-clone.s3.us-east-2.amazonaws.com/garden1.jpg',
+        main_image="https://ipsi-clone.s3.amazonaws.com/f83453979e71495697e48c95dd79ac63.jpg",
         description='random description here random description here',
         user_id=1)
     marnie = Store(
         name='Store 3',
-        main_image='https://ipsi-clone.s3.us-east-2.amazonaws.com/garden1.jpg',
+        main_image="https://ipsi-clone.s3.amazonaws.com/f83453979e71495697e48c95dd79ac63.jpg",
         description='random description here random description here',
         user_id=2)
     bobbie = Store(
         name='Store 4',
-        main_image='https://ipsi-clone.s3.us-east-2.amazonaws.com/garden1.jpg',
+        main_image="https://ipsi-clone.s3.amazonaws.com/f83453979e71495697e48c95dd79ac63.jpg",
         description='random description here random description here',
         user_id=3)
 

@@ -1,106 +1,140 @@
-// constants
-const SET_USER = "session/SET_USER";
-const REMOVE_USER = "session/REMOVE_USER";
+const SET_ALL_PRODUCTS = "product/SET_ALL_PRODUCTS";
+const SET_PRODUCT = "product/SET_PRODUCT";
+const CREATE_PRODUCT = "product/CREATE_PRODUCT";
+const UPDATE_PRODUCT = "product/UPDATE_PRODUCT";
+const DELETE_PRODUCT = "product/DELETE_PRODUCT";
 
-const setUser = (user) => ({
-	type: SET_USER,
-	payload: user,
+const setAllProducts1 = (arr) => ({
+	type: SET_ALL_PRODUCTS,
+	arr
 });
 
-const removeUser = () => ({
-	type: REMOVE_USER,
+const setProduct1 = (obj) => ({
+	type: SET_PRODUCT,
+  obj
 });
 
-const initialState = { user: null };
+const createProduct1 = (obj) => ({
+	type: CREATE_PRODUCT,
+	obj
+});
 
-export const authenticate = () => async (dispatch) => {
-	const response = await fetch("/api/auth/", {
-		headers: {
-			"Content-Type": "application/json",
-		},
-	});
+const updateProduct1 = (obj) => ({
+	type: UPDATE_PRODUCT,
+	obj
+});
+
+const deleteProduct1 = (id) => ({
+	type: DELETE_PRODUCT,
+	id
+});
+
+
+export const setAllProducts = () => async (dispatch) => {
+	const response = await fetch("/api/products/all");
 	if (response.ok) {
-		const data = await response.json();
-		if (data.errors) {
-			return;
-		}
-
-		dispatch(setUser(data));
+	  const data = await response.json();
+	  console.log(data)
+	  dispatch(setAllProducts1(data));
+      return null;
 	}
 };
 
-export const login = (email, password) => async (dispatch) => {
-	const response = await fetch("/api/auth/login", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			email,
-			password,
-		}),
-	});
-
+export const setProduct = (productId) => async (dispatch) => {
+	const response = await fetch(`/api/products/${productId}`);
 	if (response.ok) {
 		const data = await response.json();
-		dispatch(setUser(data));
+	  dispatch(setProduct1(data));
+    return null;
+	}
+};
+
+
+export const createProduct = (formData) => async (dispatch) => {
+	const response = await fetch("/api/products", {
+		method: "POST",
+		body: formData,
+	});
+  const data = await response.json();
+	if (response.ok) {
+		dispatch(createProduct1(data));
 		return null;
-	} else if (response.status < 500) {
-		const data = await response.json();
+	}
+  else if (response.status < 500) {
 		if (data.errors) {
 			return data.errors;
 		}
-	} else {
+	}
+  else {
 		return ["An error occurred. Please try again."];
 	}
 };
 
-export const logout = () => async (dispatch) => {
-	const response = await fetch("/api/auth/logout", {
-		headers: {
-			"Content-Type": "application/json",
-		},
+export const updateProduct = (productId, formData) => async (dispatch) => {
+	const response = await fetch(`/api/products/${productId}`, {
+		method: "PUT",
+		body: formData,
 	});
-
+  const data = await response.json();
 	if (response.ok) {
-		dispatch(removeUser());
-	}
-};
-
-export const signUp = (username, email, password) => async (dispatch) => {
-	const response = await fetch("/api/auth/signup", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			username,
-			email,
-			password,
-		}),
-	});
-
-	if (response.ok) {
-		const data = await response.json();
-		dispatch(setUser(data));
+		dispatch(updateProduct1(data));
 		return null;
-	} else if (response.status < 500) {
-		const data = await response.json();
+	}
+  else if (response.status < 500) {
 		if (data.errors) {
 			return data.errors;
 		}
-	} else {
+	}
+  else {
 		return ["An error occurred. Please try again."];
 	}
 };
+
+export const deleteProduct = (productId, formData) => async (dispatch) => {
+	const response = await fetch(`/api/products/${productId}`, {
+		method: "DELETE",
+		body: formData,
+	});
+  const data = await response.json();
+	if (response.ok) {
+		dispatch(deleteProduct1(data));
+		return null;
+	}
+  else {
+		return ["An error occurred. Please try again."];
+	}
+};
+
+const initialState = {
+  allProducts: {},
+  product: {}
+}
 
 export default function reducer(state = initialState, action) {
+    let newState;
 	switch (action.type) {
-		case SET_USER:
-			return { user: action.payload };
-		case REMOVE_USER:
-			return { user: null };
-		default:
-			return state;
+	case SET_ALL_PRODUCTS:
+      newState = {product: {...state.product}, allProducts: {}}
+      for (let obj of action.arr) {
+        newState.allProducts[obj.id] = obj
+      }
+	  return newState
+	case SET_PRODUCT:
+      newState = {product: {...action.obj}, allProducts: {...state.allProducts}}
+	  return newState
+    case CREATE_PRODUCT:
+      newState = {product: {...state.product}, allProducts: {...state.allProducts}}
+      newState.allProducts[action.obj.id] = action.obj
+	  return newState
+    case UPDATE_PRODUCT:
+      newState = {product: {...state.product}, allProducts: {...state.allProducts}}
+      newState.allProducts[action.obj.id] = action.obj
+	  return newState
+    case DELETE_PRODUCT:
+      newState = {product: {...state.product}, allProducts: {...state.allProducts}}
+      delete newState.allProducts[action.id]
+	  return newState
+	default:
+	    return state;
 	}
 }

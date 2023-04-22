@@ -1,18 +1,12 @@
 // constants
 const SET_USER_STORES = "store/SET_USER_STORES";
-const SET_STORE = "store/SET_STORE";
 const CREATE_STORE = "store/CREATE_STORE";
 const UPDATE_STORE = "store/UPDATE_STORE";
 const DELETE_STORE = "store/DELETE_STORE";
 
-const setUserStores1 = (obj) => ({
+const setUserStores1 = (arr) => ({
 	type: SET_USER_STORES,
-	obj
-});
-
-const setStore1 = (arr) => ({
-	type: SET_STORE,
-    arr
+	arr
 });
 
 const createStore1 = (obj) => ({
@@ -30,81 +24,97 @@ const deleteStore1 = (id) => ({
 	id
 });
 
-const initialState = { user: null };
 
-export const authenticate = () => async (dispatch) => {
-	const response = await fetch("/api/auth/", {
-		headers: {
-			"Content-Type": "application/json",
-		},
-	});
+export const setUserStores = () => async (dispatch) => {
+	const response = await fetch("/api/stores/user");
 	if (response.ok) {
 		const data = await response.json();
-		if (data.errors) {
-			return;
-		}
-
-		dispatch(setUser(data));
+	  dispatch(setUserStores1(data));
+    return null;
 	}
 };
 
-export const logout = () => async (dispatch) => {
-	const response = await fetch("/api/auth/logout", {
-		headers: {
-			"Content-Type": "application/json",
-		},
-	});
 
-	if (response.ok) {
-		dispatch(removeUser());
-	}
-};
-
-export const signUp = (username, email, password) => async (dispatch) => {
-	const response = await fetch("/api/auth/signup", {
+export const createStore = (formData) => async (dispatch) => {
+	const response = await fetch("/api/stores", {
 		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			username,
-			email,
-			password,
-		}),
+		body: formData,
 	});
-
+  const data = await response.json();
 	if (response.ok) {
-		const data = await response.json();
-		dispatch(setUser(data));
+		dispatch(createStore1(data));
 		return null;
-	} else if (response.status < 500) {
-		const data = await response.json();
+	}
+  else if (response.status < 500) {
 		if (data.errors) {
 			return data.errors;
 		}
-	} else {
+	}
+  else {
 		return ["An error occurred. Please try again."];
 	}
 };
 
-state = {
+export const updateStore = (storeId, formData) => async (dispatch) => {
+	const response = await fetch(`/api/stores/${storeId}`, {
+		method: "PUT",
+		body: formData,
+	});
+  const data = await response.json();
+	if (response.ok) {
+		dispatch(updateStore1(data));
+		return null;
+	}
+  else if (response.status < 500) {
+		if (data.errors) {
+			return data.errors;
+		}
+	}
+  else {
+		return ["An error occurred. Please try again."];
+	}
+};
+
+export const deleteStore = (storeId, formData) => async (dispatch) => {
+	const response = await fetch(`/api/stores/${storeId}`, {
+		method: "DELETE",
+		body: formData,
+	});
+  const data = await response.json();
+	if (response.ok) {
+		dispatch(deleteStore1(data));
+		return null;
+	}
+  else {
+		return ["An error occurred. Please try again."];
+	}
+};
+
+const initialState = {
   userStores: {},
-  store: {}
 }
 
 export default function reducer(state = initialState, action) {
-    let newState
+    let newState;
 	switch (action.type) {
 		case SET_USER_STORES:
-			return { user: action.payload };
-		case SET_STORE:
-			return { user: null };
-        case CREATE_STORE:
-            return { user: null };
-        case UPDATE_STORE:
-            return { user: null };
-        case DELETE_STORE:
-            return { user: null };
+      newState = {userStores: {}}
+      for (let obj of action.arr) {
+        newState.userStores[obj.id] = obj
+      }
+			return newState
+    case CREATE_STORE:
+      newState = {userStores: {...state.userStores}}
+      newState.userStores[action.obj.id] = action.obj
+			return newState
+    case UPDATE_STORE:
+      newState = {userStores: {...state.userStores}}
+      newState.userStores[action.obj.id] = action.obj
+			return newState
+    case DELETE_STORE:
+      newState = {userStores: {...state.userStores}}
+      delete newState.userStores[action.id]
+			return newState
 		default:
 			return state;
 	}

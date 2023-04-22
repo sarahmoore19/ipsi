@@ -17,6 +17,13 @@ function Navigation({ isLoaded }){
 					<ProfileButton user={sessionUser} />
 				</li>
 			)}
+			{sessionUser && (
+			  <li>
+                <NavLink exact to="/stores/user">
+				  <i class="fas fa-store"></i>
+				</NavLink>
+			  </li>
+			)}
 		</ul>
 	);
 }

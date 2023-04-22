@@ -17,7 +17,6 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 @product_routes.route('/all')
-@login_required
 def all_products():
   products = Product.query.all()
   return [product.to_dict() for product in products]
@@ -29,7 +28,6 @@ def store_products(storeId):
   return [product.to_dict() for product in products]
 
 @product_routes.route('/<int:productId>')
-@login_required
 def product(productId):
   product = Product.query.get(productId)
   productDict = product.to_dict()
