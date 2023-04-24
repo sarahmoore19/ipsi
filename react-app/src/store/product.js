@@ -80,6 +80,7 @@ export const updateProduct = (formData, productId) => async (dispatch) => {
 		return null;
 	}
   else if (response.status < 500) {
+	console.log(data)
 		if (data.errors) {
 			return data.errors;
 		}
