@@ -24,36 +24,14 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/login" >
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route exact path="/">
-            <LandingPage />
-          </Route>
-          <Route exact path="/stores/user">
-            <MyStoresPage />
-          </Route>
-          <Route exact path="/stores/new">
-            <StoreForm />
-          </Route>
-          <Route exact path="/stores/:storeId">
-            <StorePage />
-          </Route>
-          <Route exact path="/stores/:storeId/edit">
-            <StoreForm />
-          </Route>
-          <Route exact path="/products/new">
-            <ProductForm />
-          </Route>
-          <Route exact path="/products/:productId">
-            <ProductPage />
-          </Route>
-          <Route exact path="/products/:productId/edit">
-            <ProductForm />
-          </Route>
+          <Route path="/login" component={LoginFormPage} />
+          <Route path="/signup" component={SignupFormPage} />
+          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/stores/user" component={MyStoresPage} />
+          <Route exact path={["/stores/:storeId/edit", "/stores/new"]} component={StoreForm} />
+          <Route exact path="/stores/:storeId" component={StorePage} />
+          <Route exact path={["/products/:productId/edit", "/products/new"]} component={ProductForm} />
+          <Route exact path="/products/:productId" component={ProductPage} />
           <Route path="">
             <>Not a valid path, please click the logo in the upper left corner to go home.</>
           </Route>

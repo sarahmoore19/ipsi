@@ -55,7 +55,7 @@ export const createStore = (formData) => async (dispatch) => {
 	}
 };
 
-export const updateStore = (storeId, formData) => async (dispatch) => {
+export const updateStore = (formData, storeId) => async (dispatch) => {
 	const response = await fetch(`/api/stores/${storeId}`, {
 		method: "PUT",
 		body: formData,

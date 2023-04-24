@@ -34,7 +34,7 @@ def product(productId):
   productDict['images'] = [p.to_dict() for p in product.images]
   return productDict
 
-@product_routes.route('/', methods=['POST'])
+@product_routes.route('', methods=['POST'])
 @login_required
 def post_store():
   form = ProductForm()

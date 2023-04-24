@@ -23,7 +23,10 @@ function StorePage() {
   return (
   <div>
     <Link
-    to={`/products/new`}>
+    to={{
+      pathname: `/products/new`,
+      state: { storeId: storeId }
+    }}>
       <button>Create New Product</button>
     </Link>
     {userProducts.map(o => (
@@ -37,9 +40,11 @@ function StorePage() {
         </Link>
           <div>
             <Link
-            to={`/products/${o.id}/edit`}
-            >
-              <button>edit</button>
+            to={{
+              pathname: `/products/${o.id}/edit`,
+              state: { storeId: storeId }
+            }}>
+              <button>Edit</button>
             </Link>
             <OpenModalButton
             buttonText='Delete'

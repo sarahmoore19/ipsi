@@ -34,7 +34,6 @@ export const setAllProducts = () => async (dispatch) => {
 	const response = await fetch("/api/products/all");
 	if (response.ok) {
 	  const data = await response.json();
-	  console.log(data)
 	  dispatch(setAllProducts1(data));
       return null;
 	}
@@ -70,7 +69,7 @@ export const createProduct = (formData) => async (dispatch) => {
 	}
 };
 
-export const updateProduct = (productId, formData) => async (dispatch) => {
+export const updateProduct = (formData, productId) => async (dispatch) => {
 	const response = await fetch(`/api/products/${productId}`, {
 		method: "PUT",
 		body: formData,

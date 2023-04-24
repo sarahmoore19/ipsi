@@ -31,7 +31,7 @@ def store(storeId):
   storeDict['products'] = [p.to_dict() for p in store.products]
   return storeDict
 
-@store_routes.route('/', methods=['POST'])
+@store_routes.route('', methods=['POST'])
 @login_required
 def post_store():
   form = StoreForm()
