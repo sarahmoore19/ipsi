@@ -42,7 +42,7 @@ def post_store():
     image.filename = get_unique_filename(image.filename)
     upload = upload_file_to_s3(image)
     if "url" not in upload:
-        return {'errors': upload}, 401
+        return {'errors': [upload]}, 401
     url = upload["url"]
 
     store = Store(
@@ -70,7 +70,7 @@ def update_store(storeId):
       image.filename = get_unique_filename(image.filename)
       upload = upload_file_to_s3(image)
       if "url" not in upload:
-          return {'errors': upload}, 401
+          return {'errors': [upload]}, 401
       url = upload["url"]
       store.main_image = url
 
