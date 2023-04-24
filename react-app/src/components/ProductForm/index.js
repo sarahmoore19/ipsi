@@ -49,7 +49,11 @@ function ProductForm() {
     else {
       response = await dispatch(productActions.updateProduct(formData, productId))
     }
-    response ? setErrors(response) : history.push(`/stores/${storeId}`)
+    if (response) {
+      console.log('---------', response)
+      setErrors(response)
+    }
+    else history.push(`/stores/${storeId}`)
   }
 
   return (
