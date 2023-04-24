@@ -50,7 +50,7 @@ function ProductForm() {
       response = await dispatch(productActions.updateProduct(formData, productId))
     }
     if (response) {
-      console.log('---------', response)
+      setImageLoading(false)
       setErrors(response)
     }
     else history.push(`/stores/${storeId}`)
