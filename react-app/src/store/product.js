@@ -89,14 +89,13 @@ export const updateProduct = (formData, productId) => async (dispatch) => {
 	}
 };
 
-export const deleteProduct = (productId, formData) => async (dispatch) => {
+export const deleteProduct = (productId) => async (dispatch) => {
 	const response = await fetch(`/api/products/${productId}`, {
 		method: "DELETE",
-		body: formData,
 	});
   const data = await response.json();
 	if (response.ok) {
-		dispatch(deleteProduct1(data));
+		dispatch(deleteProduct1(productId));
 		return null;
 	}
   else {

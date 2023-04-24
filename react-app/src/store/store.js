@@ -75,14 +75,13 @@ export const updateStore = (formData, storeId) => async (dispatch) => {
 	}
 };
 
-export const deleteStore = (storeId, formData) => async (dispatch) => {
+export const deleteStore = (storeId) => async (dispatch) => {
 	const response = await fetch(`/api/stores/${storeId}`, {
-		method: "DELETE",
-		body: formData,
+		method: "DELETE"
 	});
   const data = await response.json();
 	if (response.ok) {
-		dispatch(deleteStore1(data));
+		dispatch(deleteStore1(storeId));
 		return null;
 	}
   else {

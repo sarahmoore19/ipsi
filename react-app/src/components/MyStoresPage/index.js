@@ -19,6 +19,7 @@ function MyStoresPage() {
 
   return (
     <div>
+      <h1>My Stores</h1>
       <Link
       to={`/stores/new`}>
         <button>Create New Store</button>
@@ -38,7 +39,7 @@ function MyStoresPage() {
             </Link>
             <OpenModalButton
             buttonText='Delete'
-            modalComponent={<DeleteModal/>}
+            modalComponent={<DeleteModal id={o.id} context='store'/>}
             />
           </div>
         </div>
