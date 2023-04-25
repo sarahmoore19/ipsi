@@ -17,8 +17,11 @@ function DeleteModal({id, context}) {
     if (context === 'store') {
       response = await dispatch(storeActions.deleteStore(id))
     }
-    else {
+    else if (context === 'product') {
       response = await dispatch(productActions.deleteProduct(id))
+    }
+    else {
+      response = await dispatch(productActions.deleteProductImage(id))
     }
     if (response) {
       setErrors(response)
@@ -28,7 +31,11 @@ function DeleteModal({id, context}) {
 
   return (
   <div>
-    <h2>Are you sure you would you like to delete this {context === 'store' ? 'Store' : 'Product'}?</h2>
+    <h2>Are you sure you would you like to delete this
+    {context === 'store' && 'Product'}
+    {context === 'product' && 'Product'}
+    {context === 'productImage' && 'Image'}
+    ?</h2>
     <ul>
       {errors.map((error, idx) => <li key={idx}>{error}</li>)}
     </ul>

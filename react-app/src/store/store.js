@@ -34,7 +34,6 @@ export const setUserStores = () => async (dispatch) => {
 	}
 };
 
-
 export const createStore = (formData) => async (dispatch) => {
 	const response = await fetch("/api/stores", {
 		method: "POST",
