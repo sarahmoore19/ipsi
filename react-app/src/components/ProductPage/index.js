@@ -28,6 +28,12 @@ function ProductPage({}) {
     height='275px'
     width='400px'
     src={bigImage?.url || product.mainImage}/>
+    { product.userId == sessionUser?.id && bigImage?.id &&
+    <OpenModalButton
+    buttonText={<i class="fas fa-trash"></i>}
+    modalComponent={<DeleteModal id={bigImage.id}/>}
+    />}
+    <div>
     {images.map(i => (
       <img
       onClick={() => setBigImage(i)}
@@ -35,6 +41,7 @@ function ProductPage({}) {
       width='100px'
       src={i.url}/>
     ))}
+    </div>
     { product.userId == sessionUser?.id &&
     <OpenModalButton
     buttonText={<i class="fas fa-plus"></i>}

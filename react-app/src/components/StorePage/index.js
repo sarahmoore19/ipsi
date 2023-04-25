@@ -26,6 +26,7 @@ function StorePage() {
   return (
   <div>
     <h1>{store?.name}</h1>
+    <h2>{store?.description}</h2>
     <Link
     to={{
       pathname: `/products/new`,
