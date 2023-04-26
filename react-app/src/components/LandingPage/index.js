@@ -22,7 +22,7 @@ function LandingPage() {
     className="header">
       <h1>
         Welcome
-       {!sessionUser ? ' to ipsi' : ` back, ${sessionUser.username}`}
+       {sessionUser?.id ? ` back, ${sessionUser.username}` : ' to ipsi' }
        !
       </h1>
     </div>
