@@ -21,9 +21,8 @@ function LandingPage() {
     <div
     className="header">
       <h1>
-        Welcome
-       {sessionUser?.id ? ` back, ${sessionUser.username}` : ' to ipsi' }
-       !
+       {sessionUser?.id && `Welcome back, ${sessionUser.username}!`}
+       {!sessionUser && `Welcome to ipsi!`}
       </h1>
     </div>
     {products.map(o => (
