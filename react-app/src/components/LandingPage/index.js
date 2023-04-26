@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import * as productActions from '../../store/product'
 import ProductCard from '../ProductCard'
+import './index.css'
 
 function LandingPage() {
   const dispatch = useDispatch();
@@ -17,7 +18,14 @@ function LandingPage() {
 
   return (
   <div>
-    <h1>Shop All Products</h1>
+    <div
+    className="header">
+      <h1>
+        Welcome
+       {!sessionUser ? ' to ipsi' : ` back, ${sessionUser.username}`}
+       !
+      </h1>
+    </div>
     {products.map(o => (
       <Link
       key={o.id}
