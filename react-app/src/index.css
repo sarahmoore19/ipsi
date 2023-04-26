@@ -1,1 +1,20 @@
 /* TODO Add site wide styles */
+Link:hover {
+  cursor: pointer;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  font-weight: bold;
+}
+
+li {
+  list-style-type: none;
+}

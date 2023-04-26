@@ -5,7 +5,7 @@ import * as storeActions from '../../store/store'
 
 import { useModal } from '../../context/Modal.js'
 
-function DeleteModal({id, context}) {
+function DeleteModal({id, context, setBigImage}) {
   const { closeModal } = useModal();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
@@ -22,6 +22,7 @@ function DeleteModal({id, context}) {
     }
     else {
       response = await dispatch(productActions.deleteProductImage(id))
+      setBigImage(null)
     }
     if (response) {
       setErrors(response)
@@ -32,9 +33,9 @@ function DeleteModal({id, context}) {
   return (
   <div>
     <h2>Are you sure you would you like to delete this
-    {context === 'store' && 'Product'}
-    {context === 'product' && 'Product'}
-    {context === 'productImage' && 'Image'}
+    {context === 'store' && ' store'}
+    {context === 'product' && ' product'}
+    {context === 'productImage' && ' image'}
     ?</h2>
     <ul>
       {errors.map((error, idx) => <li key={idx}>{error}</li>)}

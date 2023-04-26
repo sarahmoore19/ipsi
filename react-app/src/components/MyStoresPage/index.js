@@ -35,10 +35,10 @@ function MyStoresPage() {
           <div>
             <Link
             to={`/stores/${o.id}/edit`}>
-              <button>edit</button>
+              <button>Edit Store</button>
             </Link>
             <OpenModalButton
-            buttonText='Delete'
+            buttonText='Delete Store'
             modalComponent={<DeleteModal id={o.id} context='store'/>}
             />
           </div>

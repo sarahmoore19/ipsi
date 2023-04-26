@@ -4,14 +4,17 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other ProductImages here if you want
 def seed_product_images():
     demo1 = ProductImage(
-        url='https://m.media-amazon.com/images/I/61WXqyE3lRL._AC_SY355_.jpg',
+        url='https://cdn.theatlantic.com/thumbor/cZyLrl6Y7yUYg9_72phmVDjgD60=/6x463:3192x2136/960x504/media/img/mt/2017/10/RTS1FFGX/original.jpg',
+        product_id=1)
+    demo2 = ProductImage(
+        url='https://img.ltwebstatic.com/images3_pi/2022/09/02/166210006086b80b463983f534b8991f01ddfc5f2b_thumbnail_600x.webp',
         product_id=1)
     demo2 = ProductImage(
         url='https://www.jadorelesfleurs.com/dashboard/uploads/products/700_4c6bd359.jpg',
-        product_id=1)
+        product_id=5)
     demo3 = ProductImage(
         url='https://www.1800flowers.com/blog/wp-content/uploads/2017/03/single-red-rose.jpg',
-        product_id=2)
+        product_id=5)
 
 
     db.session.add(demo1)

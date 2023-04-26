@@ -20,7 +20,9 @@ function Navigation({ isLoaded }){
 			{sessionUser && (
 			  <li>
                 <NavLink exact to="/stores/user">
-				  <i className="fas fa-store"></i>
+				  <i
+				  title='My Stores'
+				  className="fas fa-store"></i>
 				</NavLink>
 			  </li>
 			)}

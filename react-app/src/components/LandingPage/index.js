@@ -17,6 +17,7 @@ function LandingPage() {
 
   return (
   <div>
+    <h1>Shop All Products</h1>
     {products.map(o => (
       <Link
       key={o.id}

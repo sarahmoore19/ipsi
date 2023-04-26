@@ -49,10 +49,10 @@ function StorePage() {
               pathname: `/products/${o.id}/edit`,
               state: { storeId: storeId }
             }}>
-              <button>Edit</button>
+              <button>Edit Product</button>
             </Link>
             <OpenModalButton
-            buttonText='Delete'
+            buttonText='Delete Product'
             modalComponent={<DeleteModal id={o.id} context='product'/>}
             />
           </div>
