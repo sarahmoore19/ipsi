@@ -18,3 +18,9 @@ a:hover {
 li {
   list-style-type: none;
 }
+
+* {
+  color: black;
+  margin-left: 0;
+  margin-right: 0;
+}

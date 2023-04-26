@@ -5,3 +5,28 @@
 .hidden {
   display: none;
 }
+
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid lightgray;
+  padding: 20px 40px;
+  margin: 0;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+}
+
+
+.store {
+  margin-right: 20px;
+  font-size: 30px;
+}
+
+.logo {
+  color: darkorange;
+  font-size: 40px;
+  font-weight: bold
+}
