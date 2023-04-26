@@ -1,5 +1,14 @@
 .profile-dropdown {
   position: absolute;
+  right: 39px;
+  top: 80px;
+  background-color: white;
+  box-shadow: 0 4px 20px rgba(34, 34, 34, .15);
+  border: .1px solid rgba(34, 34, 34, .15);
+  border-radius: 5px;
+  padding: 15px;
+  display: grid;
+  grid-gap: 5px;
 }
 
 .hidden {
@@ -19,7 +28,6 @@
   align-items: center;
 }
 
-
 .store {
   margin-right: 20px;
   font-size: 30px;
@@ -29,4 +37,23 @@
   color: rgb(238, 143, 0);
   font-size: 40px;
   font-weight: bold
+}
+
+.userButton {
+  font-size: 30px;
+  background-color: unset;
+}
+
+button {
+  border: none;
+}
+
+.logoutButton {
+  background-color:rgba(250, 190, 122, 0.5);
+  border-radius: 3px;
+  height: 25px;
+}
+
+.logoutButton:hover {
+  box-shadow: 1px 1px 1px rgba(34, 34, 34, .15)
 }
