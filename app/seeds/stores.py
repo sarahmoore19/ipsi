@@ -10,7 +10,7 @@ def seed_stores():
         user_id=1)
     demo2 = Store(
         name='La Vie En Rose',
-        main_image="https://ipsi-clone.s3.amazonaws.com/f83453979e71495697e48c95dd79ac63.jpg",
+        main_image="file:///C:/Users/sarah/Downloads/garden1.jpg",
         description='Romantic and whimiscal shop with beautiful items.',
         user_id=1)
     demo3 = Store(

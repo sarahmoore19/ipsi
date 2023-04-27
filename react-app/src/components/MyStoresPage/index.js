@@ -12,18 +12,23 @@ function MyStoresPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const stores = Object.values(useSelector((state) => state.stores.userStores))
+  const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(async () => {
     await dispatch(storeActions.setUserStores())
+    setIsLoaded(true)
   }, [dispatch])
 
   return (
+    <>
+   {isLoaded == true && (
     <div>
       <h1>My Stores</h1>
       <Link
       to={`/stores/new`}>
         <button>Create New Store</button>
       </Link>
+    {(stores.length == 0) && <h1>Create your first store!</h1>}
       {stores.map(o => (
         <div>
           <Link
@@ -44,7 +49,8 @@ function MyStoresPage() {
           </div>
         </div>
       ))}
-    </div>
+    </div>)}
+  </>
   );
 }
 

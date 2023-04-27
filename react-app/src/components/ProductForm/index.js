@@ -20,9 +20,9 @@ function ProductForm() {
   const [imageLoading, setImageLoading] = useState(false);
   const [errors, setErrors] = useState([]);
   const [image, setImage] = useState(null);
-  const [name, setName] = useState(null);
-  const [descripton, setDescription] = useState(null);
-  const [price, setPrice] = useState(null);
+  const [name, setName] = useState(product?.name);
+  const [descripton, setDescription] = useState(product?.description);
+  const [price, setPrice] = useState(product?.price);
 
   useEffect(async () => {
     await dispatch(productActions.setAllProducts())
@@ -67,20 +67,20 @@ function ProductForm() {
     onSubmit={handleSubmit}>
       <input
       required={context === 'post'}
-      placeholder="Name"
+      placeholder='Name'
       value={name}
       onChange={(e) => setName(e.target.value)}
       />
       <textarea
       required={context === 'post'}
-      placeholder="Description"
+      placeholder='Description'
       value={descripton}
       onChange={(e) => setDescription(e.target.value)}
       />
       <input
       required={context === 'post'}
       type='number'
-      placeholder="Price"
+      placeholder='Price'
       value={price}
       onChange={(e) => setPrice(e.target.value)}
       />

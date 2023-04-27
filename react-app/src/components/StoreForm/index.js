@@ -15,8 +15,8 @@ function StoreForm() {
   const [imageLoading, setImageLoading] = useState(false);
   const [errors, setErrors] = useState([]);
   const [image, setImage] = useState(null);
-  const [name, setName] = useState(null);
-  const [descripton, setDescription] = useState(null);
+  const [name, setName] = useState(store?.name);
+  const [descripton, setDescription] = useState(store?.description);
 
   useEffect(async () => {
     await dispatch(storeActions.setUserStores())

@@ -34,6 +34,7 @@ function StorePage() {
     }}>
       <button>Create New Product</button>
     </Link>
+    {(storeProducts.length == 0) && <h1>Create your first product!</h1>}
     {storeProducts.map(o => (
       <div>
         <Link

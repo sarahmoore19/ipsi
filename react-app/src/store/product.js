@@ -60,7 +60,6 @@ export const setProduct = (productId) => async (dispatch) => {
 	}
 };
 
-
 export const createProduct = (formData) => async (dispatch) => {
 	const response = await fetch("/api/products", {
 		method: "POST",
