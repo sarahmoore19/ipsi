@@ -1,0 +1,38 @@
+.header {
+    background-color:rgba(250, 190, 122, 0.5);
+    margin: 0;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formContainer {
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.form > textarea {
+    height: 60px;
+}
+
+.errors {
+width: 500px;
+}
+
+.errors li {
+  color: red;
+}
+
+.errors ul {
+  padding: 0;
+}

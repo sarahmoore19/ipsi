@@ -4,6 +4,7 @@ import { Redirect, Link } from "react-router-dom";
 import { signUp } from "../../store/session";
 import * as productActions from '../../store/product'
 import * as storeActions from '../../store/store'
+import './index.css'
 
 function ProductCard({storeId}) {
   const dispatch = useDispatch();
@@ -15,13 +16,13 @@ function ProductCard({storeId}) {
   }, [dispatch])
 
   return (
-  <div>
+  <div className="storeCard">
     <img
     height='275px'
     width='400px'
     src={store.mainImage}/>
-    <div>
-      <span>{store.name}</span>
+    <div className="storeNameContainer">
+      <span className="storeName">{store.name}</span>
     </div>
   </div>
   );

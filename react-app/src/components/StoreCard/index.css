@@ -1,0 +1,16 @@
+
+.storeCard {
+    min-height: 290px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 20px rgba(34, 34, 34, .15);
+    border: 1px solid rgba(34, 34, 34, .15);
+    font-size: 20px;
+    background-color:rgba(250, 190, 122, 0.5);
+    width: 400px;
+}
+
+.storeNameContainer {
+    overflow: wrap;
+}

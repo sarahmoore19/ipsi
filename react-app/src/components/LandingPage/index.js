@@ -25,8 +25,10 @@ function LandingPage() {
        {!sessionUser && `Welcome to ipsi!`}
       </h1>
     </div>
+    <div className="allProductsDiv">
     {products.map(o => (
       <Link
+      className="productCard"
       key={o.id}
       to={`/products/${o.id}`}>
         <ProductCard
@@ -34,6 +36,7 @@ function LandingPage() {
         />
       </Link>
     ))}
+    </div>
   </div>
   );
 }

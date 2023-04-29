@@ -6,6 +6,6 @@ from app.api.aws_helpers import ALLOWED_EXTENSIONS
 
 
 class StoreForm(FlaskForm):
-    name = StringField(validators=[DataRequired(), Length(max=255)])
+    name = StringField(validators=[DataRequired(), Length(max=50)])
     description = StringField(validators=[DataRequired(), Length(max=255)])
     mainImage = FileField(validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])

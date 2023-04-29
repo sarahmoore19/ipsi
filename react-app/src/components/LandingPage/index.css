@@ -10,3 +10,10 @@
 h1 {
     margin: 0;
 }
+
+.allProductsDiv {
+    margin: 5% 10%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}

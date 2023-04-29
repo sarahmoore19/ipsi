@@ -6,6 +6,7 @@ import * as productActions from '../../store/product'
 import DeleteModal from "../DeleteModal";
 import OpenModalButton from "../OpenModalButton";
 import AddProductImageModal from "../AddProductImageModal/AddProductImageModal";
+import './index.css'
 
 function ProductPage({}) {
   const {productId} = useParams();
@@ -25,43 +26,60 @@ function ProductPage({}) {
   let images = [{url: product.mainImage}, ...product.images]
 
   return (
-  <>
-   {isLoaded == true && (
-   <div>
-    <h1>{product.name}</h1>
-    <img
-    height='275px'
-    width='400px'
-    src={bigImage?.url || product.mainImage}/>
-    { product.userId == sessionUser?.id && bigImage?.id &&
-    <span
-    title='Delete the image currently being displayed'>
-    <OpenModalButton
-    buttonText={<i class="fas fa-trash"></i>}
-    modalComponent={<DeleteModal context='productImage' setBigImage={setBigImage} id={bigImage.id}/>}
-    /></span>}
-    <div>
-    {images.map(i => (
-      <img
-      onClick={() => setBigImage(i)}
-      height='75px'
-      width='100px'
-      src={i.url}/>
-    ))}
-    </div>
-    { product.userId == sessionUser?.id &&
-    <span
-    title='Add an image for this product'>
-    <OpenModalButton
-    buttonText={<i class="fas fa-plus"></i>}
-    modalComponent={<AddProductImageModal productId={productId}/>}
-    /></span>}
-    <div>
-      <div>${product.price}</div>
-      <h2>{product.description}</h2>
-    </div>
-  </div> )}
-  </>
+    <>
+      {isLoaded == true && (
+        <>
+          <div className="header">
+            <h1>{product.name}</h1>
+          </div>
+          <div className="productPage">
+            <div className="productDiv">
+              <div className='bigImg'>
+                <img
+                width='380px'
+                src={bigImage?.url || product.mainImage}/>
+                <span>
+                  {product.userId == sessionUser?.id &&
+                    <div
+                    className="add"
+                    title='Add an image for this product'>
+                    <OpenModalButton
+                    buttonText={<i class="fas fa-plus"></i>}
+                    modalComponent={<AddProductImageModal productId={productId}/>}/>
+                    </div>
+                  }
+                  { product.userId == sessionUser?.id && bigImage?.id &&
+                    <div
+                    className="trash"
+                    title='Delete the image currently being displayed'>
+                    <OpenModalButton
+                    buttonText={<i class="fas fa-trash"></i>}
+                    modalComponent={<DeleteModal context='productImage' setBigImage={setBigImage} id={bigImage.id}/>}/>
+                    </div>
+                  }
+                </span>
+              </div>
+              <div className="imgs">
+                {images.map(i => (
+                  <img
+                  className="smallImg"
+                  onClick={() => setBigImage(i)}
+                  height='85px'
+                  width='85px'
+                  src={i.url}/>
+                ))}
+              </div>
+              <div>
+                <div className="price">${product.price}</div>
+                <div
+                className="desc">
+                  {product.description}
+                </div>
+              </div>
+            </div>
+          </div>
+        </>)}
+    </>
   );
 }
 

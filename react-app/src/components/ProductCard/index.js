@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import { signUp } from "../../store/session";
 import * as productActions from '../../store/product'
+import './index.css'
 
 function ProductCard({productId}) {
   const dispatch = useDispatch();
@@ -14,14 +15,14 @@ function ProductCard({productId}) {
   }, [dispatch])
 
   return (
-  <div>
+  <div className="productCard">
     <img
-    height='275px'
-    width='400px'
+    maxWidth='250px'
+    height='250px'
     src={product.mainImage}/>
-    <div>
-      <span>{product.name}</span>
-      <span>${product.price}</span>
+    <div className="namePrice">
+      <div className="pName">{product.name}</div>
+      <div className="pPrice">${product.price}</div>
     </div>
   </div>
   );

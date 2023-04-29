@@ -7,11 +7,13 @@ import * as storeActions from '../../store/store'
 import StoreCard from '../StoreCard'
 import DeleteModal from '../DeleteModal'
 import OpenModalButton from "../OpenModalButton";
+import './index.css'
 
 function MyStoresPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const stores = Object.values(useSelector((state) => state.stores.userStores))
+  const stores = useSelector((state) => state.stores.userStores);
+  const storesArr = Object.values(stores)
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(async () => {
@@ -23,13 +25,21 @@ function MyStoresPage() {
     <>
    {isLoaded == true && (
     <div>
+      <div className="header">
       <h1>My Stores</h1>
+      </div>
+      <div className="createButton">
       <Link
-      to={`/stores/new`}>
+      to={{
+        pathname: `/stores/new`,
+        state: {}
+      }}>
         <button>Create New Store</button>
       </Link>
-    {(stores.length == 0) && <h1>Create your first store!</h1>}
-      {stores.map(o => (
+      </div>
+      <div className="allStoresDiv">
+    {(storesArr.length == 0) && <h1>Create your first store!</h1>}
+      {storesArr.map(o => (
         <div>
           <Link
           key={o.id}
@@ -37,9 +47,12 @@ function MyStoresPage() {
             <StoreCard
             storeId={o.id}/>
           </Link>
-          <div>
+          <div className="buttonDiv">
             <Link
-            to={`/stores/${o.id}/edit`}>
+            to={{
+              pathname: `/stores/${o.id}/edit`,
+              state: { store: stores[o.id] }
+            }}>
               <button>Edit Store</button>
             </Link>
             <OpenModalButton
@@ -49,6 +62,7 @@ function MyStoresPage() {
           </div>
         </div>
       ))}
+      </div>
     </div>)}
   </>
   );

@@ -1,0 +1,34 @@
+
+.allProductsDiv {
+  margin: 2% 5%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.buttonDiv {
+  margin-top: 5px;
+  display: flex;
+  justify-content: right;
+  gap: 5px;
+}
+
+.storeInfoDiv {
+  padding-top: 20px;
+  padding-left: 20px;
+  background-color:rgba(250, 190, 122, 0.5);
+  margin: 0;
+  min-height: 100px;
+}
+
+.createButton {
+  display: flex;
+  justify-content: end;
+  margin: 20px;
+}
+
+.createButton button {
+  font-size: 18px;
+  height: 35px;
+  border-radius: 5px;
+}

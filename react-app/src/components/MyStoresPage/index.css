@@ -1,0 +1,34 @@
+.header {
+    background-color:rgba(250, 190, 122, 0.5);
+    margin: 0;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.allStoresDiv {
+  margin: 2% 5%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.buttonDiv {
+    margin-top: 5px;
+    display: flex;
+    justify-content: right;
+    gap: 5px;
+  }
+
+.createButton {
+    display: flex;
+    justify-content: end;
+    margin: 20px;
+}
+
+.createButton button {
+  font-size: 18px;
+  height: 35px;
+  border-radius: 5px;
+}

@@ -1,0 +1,27 @@
+.productCard {
+    min-height: 290px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 20px rgba(34, 34, 34, .15);
+    font-size: 16px;
+    background-color:rgba(250, 190, 122, 0.5);
+    width: min-content;
+}
+
+.pName {
+  overflow: wrap;
+}
+
+.namePrice {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+}
+
+.pPrice {
+  font-weight: bold;
+}

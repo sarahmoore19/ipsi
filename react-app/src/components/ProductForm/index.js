@@ -4,15 +4,15 @@ import { Redirect, Link, useParams, useLocation, useHistory  } from "react-route
 import { signUp } from "../../store/session";
 import * as productActions from '../../store/product'
 import * as storeActions from '../../store/store'
+import './index.css'
 
 function ProductForm() {
   const location = useLocation()
   const { productId } = useParams()
   const dispatch = useDispatch();
   const history = useHistory()
-  const { storeId } = location.state
+  const { storeId, product } = location.state
   const sessionUser = useSelector((state) => state.session.user);
-  const product = useSelector((state) => state.products.allProducts)[productId]
   const store = useSelector((state) => state.stores.userStores)[storeId]
   let context = 'post'
   if (productId) context = 'update'
@@ -56,13 +56,21 @@ function ProductForm() {
     else history.push(`/stores/${storeId}`)
   }
 
+  if (!store) return null
+
   return (
   <div>
-    <h1>{context === 'post' ? `Create New Product For ${store?.name}` : `Update ${product?.name}`}</h1>
-    <ul>
-      {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-    </ul>
+    <h1 className="header">
+      {context === 'post' ? `Create New Product For ${store?.name}` : `Update ${product?.name}`}
+    </h1>
+    <div className="formContainer">
+    <div className="errors">
+      <ul>
+        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+      </ul>
+    </div>
     <form
+    className="form"
     encType="multipart/form-data"
     onSubmit={handleSubmit}>
       <input
@@ -85,7 +93,7 @@ function ProductForm() {
       onChange={(e) => setPrice(e.target.value)}
       />
       <div>
-      <div>Main Image</div>
+      <span>Main Image: </span>
       <input
       required={context === 'post'}
       type="file"
@@ -104,6 +112,7 @@ function ProductForm() {
       </button>
       {(imageLoading)&& <p>Loading, please do not click anything.</p>}
     </form>
+    </div>
   </div>
   );
 }
