@@ -1,20 +1,14 @@
-.loginFormContainer {
+.deleteModalDiv {
     margin: 20px;
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
-.loginForm {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.deleteModalDiv button {
+    margin-bottom: 20px;
+    width: 100%
 }
-
-.loginForm input {
-    width: 96%;
-}
-
 
 
 .loginErrors li {

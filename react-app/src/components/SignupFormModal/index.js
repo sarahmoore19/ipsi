@@ -15,29 +15,39 @@ function SignupFormModal() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (password === confirmPassword) {
+		setErrors([])
+		const emailRegex = new RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
+		if (password !== confirmPassword || !emailRegex.test(email)) {
+			if (password !== confirmPassword ) {
+				setErrors(errors => [...errors, "Confirm Password field must be the same as the Password field"]);
+			}
+			if (!emailRegex.test(email)) {
+				setErrors(errors => [...errors, "Email must be a valid email address"]);
+			}
+		}
+		else {
 			const data = await dispatch(signUp(username, email, password));
 			if (data) {
 				setErrors(data);
 			} else {
 				closeModal();
 			}
-		} else {
-			setErrors([
-				"Confirm Password field must be the same as the Password field",
-			]);
 		}
 	};
 
 	return (
-		<>
+		<div className="signupFormContainer">
 			<h1>Sign Up</h1>
-			<form onSubmit={handleSubmit}>
+			<form
+			className="signupForm"
+			onSubmit={handleSubmit}>
+				<div className="signupErrors">
 				<ul>
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
 					))}
 				</ul>
+				</div>
 				<label>
 					Email
 					<input
@@ -76,7 +86,7 @@ function SignupFormModal() {
 				</label>
 				<button type="submit">Sign Up</button>
 			</form>
-		</>
+		</div>
 	);
 }
 

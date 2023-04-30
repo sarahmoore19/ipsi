@@ -62,26 +62,30 @@ function StoreForm() {
     className="form"
     encType="multipart/form-data"
     onSubmit={handleSubmit}>
-      <input
-      required={context === 'post'}
-      placeholder="Name"
-      value={name}
-      onChange={(e) => setName(e.target.value)}
-      />
-      <textarea
-      required={context === 'post'}
-      placeholder="Description"
-      value={descripton}
-      onChange={(e) => setDescription(e.target.value)}
-      />
+      <label>
+        {context === 'update' && <div>Price</div>}
+        <input
+        required={context === 'post'}
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}/>
+      </label>
+      <label>
+        {context === 'update' && <div>Price</div>}
+        <textarea
+        required={context === 'post'}
+        placeholder="Description"
+        value={descripton}
+        onChange={(e) => setDescription(e.target.value)}/>
+      </label>
       <div>
-      <span>Main Image: </span>
-      <input
-      required={context === 'post'}
-      type="file"
-      accept="image/*"
-      onChange={(e) => setImage(e.target.files[0])}
-      />
+        <span>Main Image</span>
+        <input
+        className="storeFile"
+        required={context === 'post'}
+        type="file"
+        accept="image/*"
+        onChange={(e) => setImage(e.target.files[0])}/>
       </div>
       <button
       onClick={() => history.push('/stores/user')}

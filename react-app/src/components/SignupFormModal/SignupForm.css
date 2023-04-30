@@ -1,0 +1,24 @@
+.signupFormContainer {
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.signupForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.signupForm input {
+    width: 96%;
+}
+
+.signupErrors li {
+  color: red;
+}
+
+.signupErrors ul {
+  padding: 0
+}

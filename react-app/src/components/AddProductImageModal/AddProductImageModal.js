@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as productActions from '../../store/product'
 
 import { useModal } from '../../context/Modal.js'
+import './index.css'
 
 function AddProductImageModal({productId}) {
   const { closeModal } = useModal();
@@ -29,11 +30,15 @@ function AddProductImageModal({productId}) {
   }
 
   return (
-  <div>
-    <ul>
-      {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-    </ul>
+  <div className='addProductImageModal'>
+    <h1>Add Product Image</h1>
+    <div className="productImageErrors">
+      <ul>
+        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+      </ul>
+    </div>
     <form
+    className="addProductImageForm"
     onSubmit={handleSubmit}>
     <input
     required

@@ -1,26 +1,24 @@
-.loginFormContainer {
+.addProductImageModal {
     margin: 20px;
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
-.loginForm {
+.addProductImageForm {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.loginForm input {
+.productImageForm input {
     width: 96%;
 }
 
-
-
-.loginErrors li {
+.productImageErrors li {
   color: red;
 }
 
-.loginErrors ul {
+.productImageErrors ul {
   padding: 0
 }

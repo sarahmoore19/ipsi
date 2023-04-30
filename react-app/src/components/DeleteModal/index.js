@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as productActions from '../../store/product'
 import * as storeActions from '../../store/store'
+import './index.css'
 
 import { useModal } from '../../context/Modal.js'
 
@@ -31,7 +32,7 @@ function DeleteModal({id, context, setBigImage}) {
   }
 
   return (
-  <div>
+  <div className="deleteModalDiv">
     <h2>Are you sure you would you like to delete this
     {context === 'store' && ' store'}
     {context === 'product' && ' product'}
