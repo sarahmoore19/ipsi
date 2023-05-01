@@ -37,6 +37,12 @@ function LandingPage() {
       </Link>
     ))}
     </div>
+    <div className="footer">
+      <div>Sarah Moore</div>
+      <div>sarahnmoore19@gmail.com</div>
+      <a target='_blank' href='https://www.linkedin.com/in/sarah-moore-747946259/'>LinkedIn</a>
+      <a target='_blank' href='https://github.com/sarahmoore19'>GitHub</a>
+    </div>
   </div>
   );
 }
