@@ -63,7 +63,7 @@ function StoreForm() {
     encType="multipart/form-data"
     onSubmit={handleSubmit}>
       <label>
-        {context === 'update' && <div>Price</div>}
+        {context === 'update' && <div>Name</div>}
         <input
         required={context === 'post'}
         placeholder="Name"
@@ -71,7 +71,7 @@ function StoreForm() {
         onChange={(e) => setName(e.target.value)}/>
       </label>
       <label>
-        {context === 'update' && <div>Price</div>}
+        {context === 'update' && <div>Description</div>}
         <textarea
         required={context === 'post'}
         placeholder="Description"
