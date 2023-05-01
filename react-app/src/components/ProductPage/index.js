@@ -28,7 +28,7 @@ function ProductPage({}) {
   return (
     <>
       {isLoaded == true && (
-        <>
+        <div>
           <div className="header">
             <h1>{product.name}</h1>
           </div>
@@ -69,16 +69,16 @@ function ProductPage({}) {
                   src={i.url}/>
                 ))}
               </div>
-              <div>
+              <div className="priceDesc1">
                 <div className="price">${product.price}</div>
                 <div
-                className="desc">
+                className="productDesc">
                   {product.description}
                 </div>
               </div>
             </div>
           </div>
-        </>)}
+        </div>)}
     </>
   );
 }

@@ -5,7 +5,7 @@
 }
 
 .productDiv {
-    max-width: 410px;
+    width: 410px;
 }
 
 .header {
@@ -27,9 +27,9 @@
     display: flex;
 }
 
-.desc {
+.productDesc {
     font-size: 20px;
-    overflow: wrap;
+    overflow-wrap: break-word;
 }
 
 .imgs {
