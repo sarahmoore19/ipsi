@@ -3,5 +3,7 @@ from .signup_form import SignUpForm
 from .product_form import ProductForm
 from .product_image import ProductImageForm
 from .store_form import StoreForm
+from .shopping_cart_form import ShoppingCartForm
 from .updateStore import UpdateStoreForm
 from .updateProduct import UpdateProductForm
+from .updateShoppingCart import UpdateShoppingCartForm

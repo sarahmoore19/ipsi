@@ -22,6 +22,16 @@ function Navigation({ isLoaded }){
 			{sessionUser && (
 			  <li
 			  className='store'>
+                <NavLink exact to="/shopping-cart">
+				  <i
+				  title='Shopping Cart'
+				  className="fas fa-shopping-cart"></i>
+				</NavLink>
+			  </li>
+			)}
+			{sessionUser && (
+			  <li
+			  className='store'>
                 <NavLink exact to="/stores/user">
 				  <i
 				  title='My Stores'

@@ -22,7 +22,7 @@ function MyStoresPage() {
   }, [dispatch])
 
   return (
-    <>
+  <>
    {isLoaded == true && (
     <div>
       <div className="header">

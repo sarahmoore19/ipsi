@@ -9,8 +9,12 @@
     font-size: 20px;
     background-color:rgba(250, 190, 122, 0.5);
     width: 400px;
+    overflow-wrap: break-word;
 }
 
 .storeNameContainer {
+  overflow-wrap: break-word;
+}
+.storeName {
   overflow-wrap: break-word;
 }

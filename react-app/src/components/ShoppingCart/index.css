@@ -1,0 +1,44 @@
+.header {
+    background-color:rgba(250, 190, 122, 0.5);
+    margin: 0;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cartContainer {
+    padding: 20px;
+}
+
+.pr {
+    margin: 20px;
+}
+
+.udCon {
+    width: 220px;
+    margin: auto;
+    padding: 10px;
+}
+
+.udCon div {
+    display: flex;
+    margin: 10px;
+    justify-content: space-between;
+}
+
+
+.udCon form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.udCon input {
+    width: 80px;
+    overflow: scroll;
+  }
+
+button:disabled {
+    background-color: lightgray;
+    cursor: not-allowed;
+}

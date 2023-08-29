@@ -11,6 +11,7 @@ import StorePage from './components/StorePage'
 import StoreForm from './components/StoreForm'
 import ProductPage from './components/ProductPage'
 import ProductForm from './components/ProductForm'
+import ShoppingCartPage from "./components/ShoppingCart";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ function App() {
           <Route exact path="/stores/:storeId" component={StorePage} />
           <Route exact path={["/products/:productId/edit", "/products/new"]} component={ProductForm} />
           <Route exact path="/products/:productId" component={ProductPage} />
+          <Route exact path="/shopping-cart" component={ShoppingCartPage} />
           <Route path="">
             <>Not a valid path, please click the logo in the upper left corner to go home.</>
           </Route>

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, Link, useParams } from "react-router-dom";
 import { signUp } from "../../store/session";
 import * as productActions from '../../store/product'
+import * as shoppingCartActions from '../../store/shoppingCart'
 import DeleteModal from "../DeleteModal";
 import OpenModalButton from "../OpenModalButton";
 import AddProductImageModal from "../AddProductImageModal/AddProductImageModal";
@@ -13,17 +14,30 @@ function ProductPage({}) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const product = useSelector((state) => state.products.product)
+  const shoppingCart = useSelector((state) => state.shoppingCart.shoppingCart);
+  const shoppingCartArr = Object.values(shoppingCart)
   const [bigImage, setBigImage] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(async () => {
     setIsLoaded(false)
     await dispatch(productActions.setProduct(productId))
+    await dispatch(shoppingCartActions.setShoppingCart())
+
     setIsLoaded(true)
+
   }, [dispatch])
 
   if (!product?.id) return null
   let images = [{url: product.mainImage}, ...product.images]
+
+  let inCart = false;
+
+  for (let i = 0; i < shoppingCartArr.length; i++) {
+    if (shoppingCartArr[i].productId == productId) {
+      inCart = true;
+    }
+  }
 
   return (
     <>
@@ -75,6 +89,14 @@ function ProductPage({}) {
                 className="productDesc">
                   {product.description}
                 </div>
+              </div>
+              <div>
+                { !inCart && sessionUser &&
+                <button
+                onClick={() => dispatch(shoppingCartActions.createShoppingCart(productId))}>
+                  Add To Cart
+                </button>
+                }
               </div>
             </div>
           </div>

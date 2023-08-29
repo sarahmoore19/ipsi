@@ -9,13 +9,19 @@ function ProductCard({productId}) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const product = useSelector((state) => state.products.allProducts)[productId]
+  const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(async () => {
     await dispatch(productActions.setAllProducts())
+    setIsLoaded(true)
   }, [dispatch])
 
+  if (!productId) return null
+
   return (
-  <div className="productCard">
+  <>
+  { isLoaded == true &&
+    <div className="productCard">
     <img
     maxWidth='250px'
     height='250px'
@@ -25,6 +31,8 @@ function ProductCard({productId}) {
       <div className="pPrice">${product.price}</div>
     </div>
   </div>
+  }
+  </>
   );
 }
 
