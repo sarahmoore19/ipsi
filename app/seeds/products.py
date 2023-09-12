@@ -59,6 +59,63 @@ def seed_products():
         price=2.99,
         user_id=1,
         store_id=4)
+    demo16 = Product(
+        name='Necklace',
+        description='White gold necklace with sapphire pendant',
+        main_image="data:image/jpeg;base64,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",
+        price=165.73,
+        user_id=1,
+        store_id=1)
+    demo9 = Product(
+        name='Soap',
+        description='Rose scented moisturizing hand soap',
+        main_image="https://cdn.shopify.com/s/files/1/2395/7673/files/rose-soap-2_480x480.jpg?v=1653637839",
+        price=15.14,
+        user_id=1,
+        store_id=1)
+    demo10 = Product(
+        name='Tank Top',
+        description='Black spaghetti strap cami',
+        main_image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-7KMwzLBIRb3_Fg1o_5lJVeFa-Mnvm6Ku9w&usqp=CAU",
+        price=14.00,
+        user_id=1,
+        store_id=1)
+    demo11 = Product(
+        name='Bracelet',
+        description='Gold Bracelet with stars and rubies',
+        main_image="https://i.etsystatic.com/19986112/r/il/6e7a09/4691630572/il_570xN.4691630572_fbzi.jpg",
+        price=78.42,
+        user_id=1,
+        store_id=1)
+    demo12 = Product(
+        name='Sandals',
+        description='White leather sandals with diamante embellishment',
+        main_image="https://images.inthestyle.com/c_fit,dpr_1.0,f_auto,q_auto,w_800/media/product/FO6607098302.jpg",
+        price=85.14,
+        user_id=1,
+        store_id=3)
+    demo13 = Product(
+        name='Socks',
+        description='Fluffy socks with christmas snowman pattern',
+        main_image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScl3UUkOFQro1RgO_wPzlNimzuy46vQ9SdHjLZOXS9LCIIR_nACnsWuZnguH0w7NfWi-g&usqp=CAU",
+        price=704.52,
+        user_id=1,
+        store_id=3)
+    demo14 = Product(
+        name='Robe',
+        description='White waffle print hotel quality robe',
+        main_image="https://www.shopmarriott.com/images/products/v2/xlrg/Marriott-waffle-kimono-robe-MAR-403-PSK-NL_xlrg.jpg",
+        price=374.25,
+        user_id=1,
+        store_id=2)
+    demo15 = Product(
+        name='Perfume',
+        description='Sweet amber and vanilla Dior perfume',
+        main_image="https://www.dior.com/dw/image/v2/BGXS_PRD/on/demandware.static/-/Sites-master_dior/default/dw9053b3ed/Y0996344/Y0996344_C099600857_E03_GHC.jpg?sw=800&sh=800",
+        price=2.88,
+        user_id=1,
+        store_id=2)
+
 
     db.session.add(demo1)
     db.session.add(demo2)
@@ -68,6 +125,15 @@ def seed_products():
     db.session.add(demo6)
     db.session.add(demo7)
     db.session.add(demo8)
+    db.session.add(demo9)
+    db.session.add(demo10)
+    db.session.add(demo11)
+    db.session.add(demo12)
+    db.session.add(demo13)
+    db.session.add(demo14)
+    db.session.add(demo15)
+    db.session.add(demo16)
+
     db.session.commit()
 
 
