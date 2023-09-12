@@ -42,3 +42,15 @@ button:disabled {
     background-color: lightgray;
     cursor: not-allowed;
 }
+
+.checkout {
+    margin: 20px;
+    text-align: end;
+}
+
+.checkout button {
+    font-size: 23px;
+    background-color: black;
+    height: 40px;
+    color: white;
+}

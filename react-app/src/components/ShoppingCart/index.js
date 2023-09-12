@@ -27,6 +27,11 @@ function ShoppingCartPage() {
       if (!!!event.target.quantity.value) return;
       dispatch(shoppingCartActions.updateShoppingCart(event.target.quantity.value, id))
     }
+    const emptyCart = () => {
+      for (let i = 0; i < shoppingCartArr.length; i++) {
+        dispatch(shoppingCartActions.deleteShoppingCart(shoppingCartArr[i].id))
+      }
+    }
 
     return (
   <>
@@ -35,7 +40,9 @@ function ShoppingCartPage() {
       <div className="header">
       <h1>Shopping Cart</h1>
       </div>
-
+      <div className="checkout">
+        <button onClick={emptyCart}>Check Out</button>
+      </div>
       <div className="cartContainer" >
       {shoppingCartArr.map(o => (
         <div key={o.id} className="pr">
