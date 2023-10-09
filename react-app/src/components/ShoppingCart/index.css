@@ -50,7 +50,7 @@ button:disabled {
 
 .checkout button {
     font-size: 23px;
-    background-color: black;
+    background-color: blue;
     height: 40px;
     color: white;
 }
