@@ -40,11 +40,11 @@
 
 button:disabled {
     background-color: lightgray;
-    cursor: not-allowed;
+    cursor: pointer;
 }
 
 .checkout {
-    margin: 11px;
+    margin: 20px;
     text-align: end;
 }
 
