@@ -35,12 +35,12 @@
 
 .udCon input {
     width: 80px;
-    overflow: scroll;
+    overflow: auto;
   }
 
 button:disabled {
     background-color: lightgray;
-    cursor: pointer;
+    cursor: not-allowed;
 }
 
 .checkout {
